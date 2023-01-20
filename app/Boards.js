@@ -1,113 +1,226 @@
-const tileBoards = (level, i, todaysBoards) => {
+const tileBoards = (level, i) => {
+
+
   if (level === 1) {
-    if (i === 0) return todaysBoards?.boardA.inner.tile0;
-    if (i === 1) return todaysBoards?.boardA.inner.tile1;
-    if (i === 2) return todaysBoards?.boardA.inner.tile2;
+    if (i === 0) return 0;
+    if (i === 1) return 0;
+    if (i === 2) return 0;
 
-    if (i === 3) return todaysBoards?.boardA.inner.tile3;
-    if (i === 4) return todaysBoards?.boardA.inner.tile4;
-    if (i === 5) return todaysBoards?.boardA.inner.tile5;
+    if (i === 3) return 0;
+    if (i === 4) return 1;
+    if (i === 5) return 0;
 
-    if (i === 6) return todaysBoards?.boardA.inner.tile6;
-    if (i === 7) return todaysBoards?.boardA.inner.tile7;
-    if (i === 8) return todaysBoards?.boardA.inner.tile8;
+    if (i === 6) return 0;
+    if (i === 7) return 0;
+    if (i === 8) return 0;
   }
 
   if (level === 2) {
-    if (i === 0) return todaysBoards?.boardB.inner.tile0;
-    if (i === 1) return todaysBoards?.boardB.inner.tile1;
-    if (i === 2) return todaysBoards?.boardB.inner.tile2;
+    if (i === 0) return 0;
+    if (i === 1) return 2;
+    if (i === 2) return 0;
 
-    if (i === 3) return todaysBoards?.boardB.inner.tile3;
-    if (i === 4) return todaysBoards?.boardB.inner.tile4;
-    if (i === 5) return todaysBoards?.boardB.inner.tile5;
+    if (i === 3) return 1;
+    if (i === 4) return 1;
+    if (i === 5) return 0;
 
-    if (i === 6) return todaysBoards?.boardB.inner.tile6;
-    if (i === 7) return todaysBoards?.boardB.inner.tile7;
-    if (i === 8) return todaysBoards?.boardB.inner.tile8;
+    if (i === 6) return 0;
+    if (i === 7) return 3;
+    if (i === 8) return 2;
   }
 
   if (level === 3) {
-    if (i === 0) return todaysBoards?.boardC.inner.tile0;
-    if (i === 1) return todaysBoards?.boardC.inner.tile1;
-    if (i === 2) return todaysBoards?.boardC.inner.tile2;
+    if (i === 0) return 4;
+    if (i === 1) return 0;
+    if (i === 2) return 1;
 
-    if (i === 3) return todaysBoards?.boardC.inner.tile3;
-    if (i === 4) return todaysBoards?.boardC.inner.tile4;
-    if (i === 5) return todaysBoards?.boardC.inner.tile5;
+    if (i === 3) return 2;
+    if (i === 4) return 4;
+    if (i === 5) return 1;
 
-    if (i === 6) return todaysBoards?.boardC.inner.tile6;
-    if (i === 7) return todaysBoards?.boardC.inner.tile7;
-    if (i === 8) return todaysBoards?.boardC.inner.tile8;
+    if (i === 6) return 0;
+    if (i === 7) return 0;
+    if (i === 8) return 0;
+  }
+
+
+  if (level === 4) {
+    if (i === 0) return 4;
+    if (i === 1) return 3;
+    if (i === 2) return 0;
+
+    if (i === 3) return 0;
+    if (i === 4) return 2;
+    if (i === 5) return 0;
+
+    if (i === 6) return 2;
+    if (i === 7) return 2;
+    if (i === 8) return 0;
+  }
+
+  if (level === 5) {
+    if (i === 0) return 6;
+    if (i === 1) return 6;
+    if (i === 2) return 0;
+
+    if (i === 3) return 0;
+    if (i === 4) return 3;
+    if (i === 5) return 0;
+
+    if (i === 6) return 0;
+    if (i === 7) return 3;
+    if (i === 8) return 6;
+  }
+
+  if (level === 6) {
+    if (i === 0) return 1;
+    if (i === 1) return 1;
+    if (i === 2) return 1;
+
+    if (i === 3) return 0;
+    if (i === 4) return 2;
+    if (i === 5) return 0;
+
+    if (i === 6) return 0;
+    if (i === 7) return 1;
+    if (i === 8) return 2;
   }
 };
 
-const markerBoards = (level, i, todaysBoards) => {
+const markerBoards = (level, i) => {
+
 
   if (level === 1) {
     // Top
-    if (i === 1) return todaysBoards?.boardA.outer.top.A;
-    if (i === 2) return todaysBoards?.boardA.outer.top.B;
-    if (i === 3) return todaysBoards?.boardA.outer.top.C;
+    if (i === 1) return 0;
+    if (i === 2) return 0;
+    if (i === 3) return 1;
 
     // Bottom
-    if (i === 21) return todaysBoards?.boardA.outer.top.A;
-    if (i === 22) return todaysBoards?.boardA.outer.top.B;
-    if (i === 23) return todaysBoards?.boardA.outer.top.C;
+    if (i === 21) return 0;
+    if (i === 22) return 0;
+    if (i === 23) return 1;
 
     // Left
-    if (i === 5) return todaysBoards?.boardA.outer.left.A;
-    if (i === 10) return todaysBoards?.boardA.outer.left.B;
-    if (i === 15) return todaysBoards?.boardA.outer.left.C;
+    if (i === 5) return 0;
+    if (i === 10) return 1;
+    if (i === 15) return 0;
 
     // Right
-    if (i === 9) return todaysBoards?.boardA.outer.left.A;
-    if (i === 14) return todaysBoards?.boardA.outer.left.B;
-    if (i === 19) return todaysBoards?.boardA.outer.left.C;
+    if (i === 9) return 0;
+    if (i === 14) return 1;
+    if (i === 19) return 0;
   }
 
   if (level === 2) {
     // Top
-    if (i === 1) return todaysBoards?.boardB.outer.top.A;
-    if (i === 2) return todaysBoards?.boardB.outer.top.B;
-    if (i === 3) return todaysBoards?.boardB.outer.top.C;
+    if (i === 1) return 2;
+    if (i === 2) return 2;
+    if (i === 3) return 5;
 
     // Bottom
-    if (i === 21) return todaysBoards?.boardB.outer.top.A;
-    if (i === 22) return todaysBoards?.boardB.outer.top.B;
-    if (i === 23) return todaysBoards?.boardB.outer.top.C;
+    if (i === 21) return 2;
+    if (i === 22) return 2;
+    if (i === 23) return 5;
 
     // Left
-    if (i === 5) return todaysBoards?.boardB.outer.left.A;
-    if (i === 10) return todaysBoards?.boardB.outer.left.B;
-    if (i === 15) return todaysBoards?.boardB.outer.left.C;
+    if (i === 5) return 2;
+    if (i === 10) return 0;
+    if (i === 15) return 7;
 
     // Right
-    if (i === 9) return todaysBoards?.boardB.outer.left.A;
-    if (i === 14) return todaysBoards?.boardB.outer.left.B;
-    if (i === 19) return todaysBoards?.boardB.outer.left.C;
+    if (i === 9) return 2;
+    if (i === 14) return 0;
+    if (i === 19) return 7;
   }
 
   if (level === 3) {
     // Top
-    if (i === 1) return todaysBoards?.boardC.outer.top.A;
-    if (i === 2) return todaysBoards?.boardC.outer.top.B;
-    if (i === 3) return todaysBoards?.boardC.outer.top.C;
+    if (i === 1) return 0;
+    if (i === 2) return 10;
+    if (i === 3) return 2;
 
     // Bottom
-    if (i === 21) return todaysBoards?.boardC.outer.top.A;
-    if (i === 22) return todaysBoards?.boardC.outer.top.B;
-    if (i === 23) return todaysBoards?.boardC.outer.top.C;
+    if (i === 21) return 0;
+    if (i === 22) return 10;
+    if (i === 23) return 2;
 
     // Left
-    if (i === 5) return todaysBoards?.boardC.outer.left.A;
-    if (i === 10) return todaysBoards?.boardC.outer.left.B;
-    if (i === 15) return todaysBoards?.boardC.outer.left.C;
+    if (i === 5) return 4;
+    if (i === 10) return 0;
+    if (i === 15) return 8;
 
     // Right
-    if (i === 9) return todaysBoards?.boardC.outer.left.A;
-    if (i === 14) return todaysBoards?.boardC.outer.left.B;
-    if (i === 19) return todaysBoards?.boardC.outer.left.C;
+    if (i === 9) return 4;
+    if (i === 14) return 0;
+    if (i === 19) return 8;
+  }
+
+
+  if (level === 4) {
+    // Top
+    if (i === 1) return 2;
+    if (i === 2) return 0;
+    if (i === 3) return 11;
+
+    // Bottom
+    if (i === 21) return 2;
+    if (i === 22) return 0;
+    if (i === 23) return 11;
+
+    // Left
+    if (i === 5) return 7;
+    if (i === 10) return 2;
+    if (i === 15) return 4;
+
+    // Right
+    if (i === 9) return 7;
+    if (i === 14) return 2;
+    if (i === 19) return 4;
+  }
+
+  if (level === 5) {
+    // Top
+    if (i === 1) return 6;
+    if (i === 2) return 0;
+    if (i === 3) return 18;
+
+    // Bottom
+    if (i === 21) return 6;
+    if (i === 22) return 0;
+    if (i === 23) return 18;
+
+    // Left
+    if (i === 5) return 12;
+    if (i === 10) return 12;
+    if (i === 15) return 0;
+
+    // Right
+    if (i === 9) return 12;
+    if (i === 14) return 12;
+    if (i === 19) return 0;
+  }
+
+  if (level === 6) {
+    // Top
+    if (i === 1) return 0;
+    if (i === 2) return 5;
+    if (i === 3) return 3;
+
+    // Bottom
+    if (i === 21) return 0;
+    if (i === 22) return 5;
+    if (i === 23) return 3;
+
+    // Left
+    if (i === 5) return 5;
+    if (i === 10) return 3;
+    if (i === 15) return 0;
+
+    // Right
+    if (i === 9) return 5;
+    if (i === 14) return 3;
+    if (i === 19) return 0;
   }
 };
 

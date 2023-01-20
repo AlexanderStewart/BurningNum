@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import React, { useEffect, useState, useRef } from 'react';
 import { useSprings, animated, config, useSpring } from '@react-spring/native';
 import colors from 'nice-color-palettes';
+import AnimateLetters from './../animation/AnimateLetters';
 
 // Board
 import { tileBoards } from './../Boards';
@@ -22,7 +23,7 @@ import { ArrowPathIcon, InformationCircleIcon, SpeakerWaveIcon, SpeakerXMarkIcon
 const Play = (props) => {
 
   // props
-  const { todaysBoards, setPage, sounds, toggleAudio, audioOn } = props;
+  const { setPage, sounds, toggleAudio, audioOn } = props;
 
   const AnimatedView = animated(View);
   const insets = useSafeAreaInsets();
@@ -52,7 +53,7 @@ const Play = (props) => {
 
   // States
   const [win, setWin] = useState(false);
-  const [won, setWon] = useState(false);
+  const [payScreen, setWon] = useState(false);
   const [level, setLevel] = useState(null);
   const [showTileMarkers, setShowTileMarkers] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -90,7 +91,7 @@ const Play = (props) => {
 
   const winScreenOpacity = useSpring({
     from: { opacity: 0 },
-    to: { opacity: won ? 1 : 0 },
+    to: { opacity: payScreen ? 1 : 0 },
     config: config.gentle,
   });
 
@@ -161,7 +162,7 @@ const Play = (props) => {
   // Functions
   const start = () => {
 
-    if (!wholeWidth || !tileWidth || !tileBoardWidth || !tileMarkersBoardWidth || !todaysBoards || (!level && level !== 0)) return;
+    if (!wholeWidth || !tileWidth || !tileBoardWidth || !tileMarkersBoardWidth || (!level && level !== 0)) return;
 
     let tempTiles = [];
 
@@ -169,7 +170,7 @@ const Play = (props) => {
       tempTiles.push({
         backgroundColor: niceColors[n],
         color: LightOrDark(niceColors[n], myColors.lightText, myColors.darkText),
-        value: tileBoards(level, n, todaysBoards),
+        value: tileBoards(level, n),
         selected: false,
         left: (n * tileWidth) - Math.floor(n / 3) * tileBoardWidth,
         top: Math.floor(n / 3) * tileWidth,
@@ -285,7 +286,7 @@ const Play = (props) => {
 
     if (currentTileSpringIndex === 4 && onFirstAnimation.current) {
       setShowTileMarkers(true);
-      setTileMarkers(UpdateMarkers(tiles, level, todaysBoards));
+      setTileMarkers(UpdateMarkers(tiles, level));
       start();
 
       onFirstAnimation.current = false;
@@ -467,7 +468,7 @@ const Play = (props) => {
     };
 
     getLevel();
-  }, [todaysBoards]);
+  }, []);
 
   useEffect(() => {
     console.log('level', level);
@@ -480,14 +481,13 @@ const Play = (props) => {
         await AsyncStorage.setItem('level', level.toString());
         reset();
       };
-
       saveLevel();
       if (level === 4) setWon(true);
     }
   }, [level]);
 
   useEffect(() => {
-    setTileMarkers(UpdateMarkers(tiles, level, todaysBoards));
+    setTileMarkers(UpdateMarkers(tiles, level));
     checkForWin();
     console.log('tiles[0]', tiles[0]?.value);
   }, [tiles]);
@@ -565,6 +565,10 @@ const Play = (props) => {
       allowWin.current = true;
     }
   }, [win]);
+
+  useEffect(() => {
+    console.log('showMenu', showMenu);
+  }, [showMenu]);
 
   const RenderTiles = () => {
 
@@ -674,7 +678,13 @@ const Play = (props) => {
       <AnimatedView
         style={[initialOpacity, springOpacityMenu, tw`absolute left-0 right-0 z-0 flex justify-center items-center flex-col overflow-hidden`]}
       >
-        <Text style={tw`text-6xl font-bold tracking-tight text-gray-700`}>You Win!</Text>
+        <AnimateLetters
+          string={'You Win!'}
+          letterClassName={tw`text-6xl font-bold tracking-tight text-gray-700`}
+          colors={niceColors}
+          myDelay={100}
+          start={showMenu}
+        />
       </AnimatedView>
 
       <AnimatedView style={[initialOpacity, springOpacityTileMarkers, tw`absolute w-full justify-center items-center flex flex-1 flex-row overflow-hidden`, { top: insets.top + 10, zIndex: 100 }]}>
@@ -718,7 +728,7 @@ const Play = (props) => {
             </View>
           </View>
           <View style={tw`mt-2`} />
-          <Text style={tw`text-5xl font-bold text-gray-700 text-gray-700`}>{level - 1}<Text style={tw`text-xl font-medium`}>/3</Text></Text>
+          <Text style={tw`text-5xl font-bold text-gray-700 text-gray-700`}>{level - 1}<Text style={tw`text-xl font-medium`}>/100</Text></Text>
         </View>
 
       </AnimatedView>
